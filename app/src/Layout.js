@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -25,9 +26,10 @@ export default class Home extends React.Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <MenuItem onTouchTap={this.handleToggle}>Events</MenuItem>
-          <MenuItem onTouchTap={this.handleToggle}>Standings</MenuItem>
+          <MenuItem containerElement={<Link to="/"/>}>Events</MenuItem>
+          <MenuItem containerElement={<Link to="/standings"/>}>Standings</MenuItem>
         </Drawer>
+        {this.props.children}
       </div>
     )
   }

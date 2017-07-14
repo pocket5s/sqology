@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Home from './Home';
+import {
+    BrowserRouter,
+    Route,
+    Switch
+   } from 'react-router-dom';
+import SeasonStandings from './SeasonStandings';
+import Events from './Events';
 
-class App extends Component {
+const App = inject('store')( observer (class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <Home />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={Events} />
+            <Route path="/standings" component={SeasonStandings} />
+          </Switch>
+        </BrowserRouter>
       </MuiThemeProvider>
     );
   }
-}
+}));
 
 export default App;
