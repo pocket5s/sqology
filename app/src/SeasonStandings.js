@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 import { observer, inject } from 'mobx-react';
 
 import Layout from './Layout';
@@ -8,7 +8,7 @@ const SeasonStandings = inject('store')( observer (class SeasonStandings extends
   
   constructor(props) {
     super(props)
-    this.state = {season:null, year:2017, standings:null, season:null}
+    this.state = {season:null, year:2017, standings:null}
   }
 
   componentDidMount() {
