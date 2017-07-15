@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import EventIcon from 'material-ui/svg-icons/action/event';
+import RankIcon from 'material-ui/svg-icons/action/grade';
 
 export default class Home extends React.Component {
 
@@ -26,8 +28,8 @@ export default class Home extends React.Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <MenuItem containerElement={<Link to="/"/>}>Events</MenuItem>
-          <MenuItem containerElement={<Link to="/standings"/>}>Standings</MenuItem>
+          <MenuItem leftIcon={<EventIcon />} containerElement={<Link to="/"/>}>Events</MenuItem>
+          <MenuItem leftIcon={<RankIcon />}containerElement={<Link to="/standings"/>}>Standings</MenuItem>
         </Drawer>
         {this.props.children}
       </div>
