@@ -12,15 +12,15 @@ const SeasonStandings = inject('store')( observer (class SeasonStandings extends
   }
 
   componentDidMount() {
-    this.setState({standings: this.props.store.standings}); 
+    //this.setState({standings: this.props.store.standings}); 
   }
 
   render() {
     var season = null;
     
     var year = this.state.year;
-    if( this.state.standings != null ) {
-      this.state.standings.slice().map(function(item, index) {
+    if( this.props.store.standings != null ) {
+      this.props.store.standings.slice().map(function(item, index) {
         if( item.year === year ) {
           season = item.listing;
         }

@@ -1,4 +1,5 @@
 import { extendObservable } from 'mobx'
+import api from './api'
 
 export class SQStore {
   constructor() {
@@ -8,15 +9,19 @@ export class SQStore {
       user: null,
       standings: []
     })
+
+    this.loadStandings();
+    this.loadEvents();
   }
 
   getStandings( year ) {
     if( year === null ) {
       year = this.getCurrentYear()
     }
-    console.log( "Looking for standings for year ", year );
+    if( this.standings.length === 0 ) {
+      this.loadStandings();
+    }
     var stnds = this.standings.filter( standing => standing.year === year );
-    console.log( "Returning ", stnds )
     return stnds.listing;
   }
 
@@ -36,6 +41,23 @@ export class SQStore {
    return this.user;
   }
 
+  loadEvents() {
+    var e = this.events;
+    api.fetchEvents( 2017 ).then( function(data) {
+      data.slice().map(function(item) {
+        e.push( {name:item.name, date:new Date(item.date)} );
+      });
+    });
+  }
+
+  loadStandings() {
+    var e = this.standings;
+    api.fetchStandings( 2017 ).then( function(data) {
+      data.slice().map(function(item) {
+        e.push( item );
+      });
+    });
+  }
 }
 
 const store = window.store = new SQStore()
