@@ -6,6 +6,7 @@ export class SQStore {
     extendObservable( this, {
       seasons: [2017],
       events: [],
+      eventResults: [],
       user: null,
       standings: []
     })
@@ -45,7 +46,19 @@ export class SQStore {
     var e = this.events;
     api.fetchEvents( 2017 ).then( function(data) {
       data.slice().map(function(item) {
-        e.push( {name:item.name, date:new Date(item.date)} );
+        return(
+        e.push( {id: item.id,
+                 name:item.name, 
+                 date:new Date(item.date),
+                 location: item.location,
+                 address: item.address,
+                 city: item.city,
+                 state: item.state,
+                 zip: item.zip,
+                 notes: item.notes,
+                 scoresPosted: item.scoresPosted
+                } )
+        )
       });
     });
   }
@@ -54,8 +67,24 @@ export class SQStore {
     var e = this.standings;
     api.fetchStandings( 2017 ).then( function(data) {
       data.slice().map(function(item) {
-        e.push( item );
-      });
+      return(
+        e.push( item )
+      )
+      })
+    });
+  }
+
+  loadEventResults(id) {
+    console.log( "Loading event results for " + id );
+    var evResults = this.eventResults;
+    console.log( "Could find any locally, checking api" );
+    api.fetchEventResults( id ).then( function(data) {
+      if( data !== null ) {
+        evResults.push( data );
+      }
+      else {
+        throw "No results for the selected event"
+      }
     });
   }
 }

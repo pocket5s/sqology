@@ -1,1 +1,46 @@
-[{"name":"SQology A","date":"2017-07-29T05:00:00.000Z"},{"name":"SQology 1","date":"2017-06-29T05:00:00.000Z"},{"name":"SQology 2","date":"2017-05-19T05:00:00.000Z"},{"name":"SQology 3","date":"2017-07-10T05:00:00.000Z"}]
+[
+  {"id":"2",
+  "name":"SQology A",
+  "date":"2017-07-29T05:00:00.000Z",
+  "location":"Hybrid Audio HQ",
+  "address":"123 Legatia Way",
+  "city":"Cumming",
+  "state":"GA",
+  "zip":"12344",
+  "notes":"Big event, lots going on",
+  "scoresPosted":false
+  },
+  {"id":"1",
+  "name":"SQology 1",
+   "date":"2017-06-29T05:00:00.000Z",
+  "location":"Hybrid Audio HQ",
+  "address":"123 Legatia Way",
+  "city":"Cumming",
+  "state":"GA",
+  "zip":"12344",
+  "notes":"Big event, lots going on",
+  "scoresPosted":true
+  },
+  {"id":"3",
+  "name":"SQology 2",
+  "date":"2017-05-19T05:00:00.000Z",
+  "location":"Hybrid Audio HQ",
+  "address":"123 Legatia Way",
+  "city":"Cumming",
+  "state":"GA",
+  "zip":"12344",
+  "notes":"Big event, lots going on",
+  "scoresPosted":false
+  },
+  {"id":"4",
+  "name":"SQology 3",
+  "date":"2017-07-10T05:00:00.000Z",
+  "location":"Hybrid Audio HQ",
+  "address":"123 Legatia Way",
+  "city":"Cumming",
+  "state":"GA",
+  "zip":"12344",
+  "notes":"Big event, lots going on",
+  "scoresPosted":false
+  }
+]

@@ -20,11 +20,10 @@ const SeasonStandings = inject('store')( observer (class SeasonStandings extends
     
     var year = this.state.year;
     if( this.props.store.standings != null ) {
-      this.props.store.standings.slice().map(function(item, index) {
-        if( item.year === year ) {
-          season = item.listing;
-        }
-      })
+      var std = this.props.store.standings.filter( item => item.year === year )
+      if( std.length > 0 ) {
+        season = std[0].listing;
+      } 
     }
 
     if( season != null ) {
@@ -43,9 +42,9 @@ const SeasonStandings = inject('store')( observer (class SeasonStandings extends
                       <CardText expandable={true}>
                         <span>Points Breakdown</span>
                         <ul>
-                          <li>IASCA: 100</li>
-                          <li>MECA: 70</li>
-                          <li>Distance: 300</li>
+                          <li>IASCA: {item.iasca}</li>
+                          <li>MECA: {item.meca}</li>
+                          <li>Distance: {item.distance}</li>
                         </ul>
                       </CardText>       
                       </Card>)

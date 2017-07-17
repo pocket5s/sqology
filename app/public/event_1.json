@@ -1,0 +1,18 @@
+{
+  "eventId":"1",
+  "placings":[
+    {
+    "name":"John Doe",
+    "iasca":192,
+    "meca":70,
+    "distance":100.5
+    },
+    {
+    "name":"Jane Doe",
+    "iasca":188,
+    "meca":67,
+    "distance":200.5
+    }
+  ]
+}
+

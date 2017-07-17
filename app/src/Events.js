@@ -5,7 +5,7 @@ import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigati
 import RecentIcon from 'material-ui/svg-icons/action/restore';
 import CurrentIcon from 'material-ui/svg-icons/action/schedule';
 
-
+import EventResults from './EventResults'
 import Layout from './Layout'
 
 
@@ -38,7 +38,6 @@ const Events = inject('store')( observer (class Events extends Component {
       );
     }
     else {
-      console.log( "Getting recent events" );
       events = this.props.store.events.filter( ev => 
         (ev.date.getMonth() === today.getMonth() &&
          ev.date.getDate() < today.getDate()) ||
@@ -66,13 +65,14 @@ const Events = inject('store')( observer (class Events extends Component {
               />
               <CardText expandable={true}>
                 <ul>
-                  <li>Location: Hybrid Audio HQ</li>
-                  <li>Address: 123 Legatia Way</li>
-                  <li>State: GA</li>
-                  <li>Zip: 12345</li>
+                  <li>Location: {item.location}</li>
+                  <li>Address: {item.address}</li>
+                  <li>State: {item.state}</li>
+                  <li>Zip: {item.zip}</li>
                 </ul>
                 <h4>Notes:</h4>
-                <p>Big event, lots of stuff going on.</p>
+                <p>{item.notes}</p>
+                <EventResults eventId={item.id} scoresPosted={item.scoresPosted} />
               </CardText>
             </Card>
           )
