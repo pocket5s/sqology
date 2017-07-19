@@ -4,7 +4,9 @@
     "listing":[
       {"name":"Mike Young", "totalScore":951.65, "meca":249.25, "iasca":595, "distance":1074},
       {"name":"Albert Akinduro", "totalScore":758.9, "meca":155, "iasca":567, "distance":369},
-      {"name":"Mario Orihuela", "totalScore":721.55, "meca":70.25, "iasca":519, "distance":1323}
+      {"name":"Mario Orihuela", "totalScore":721.55, "meca":70.25, "iasca":519, "distance":1323},
+      {"name":"Gerald Costa", "totalScore":615.55, "meca":144.75, "iasca":363, "distance":1078},
+      {"name":"Mark Williams", "totalScore":592.25, "meca":149.25, "iasca":400, "distance":430}
     ]
   }
 ]

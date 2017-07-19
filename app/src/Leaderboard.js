@@ -27,7 +27,7 @@ const Leaderboard = inject('store')( observer (class Leaderboard extends Compone
             return( <LeaderboardItem key={item.userId} item={item} /> )
           })}
         </List>
-        <FlatButton label="Full Leaderboard List" fullWidth={true} onTouchTap={this.fullList} />
+        <FlatButton label="Full Leaderboard List" fullWidth={true} onTouchTap={this.fullList} secondary={true}/>
       </div>
     )
   }

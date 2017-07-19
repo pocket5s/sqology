@@ -36,7 +36,7 @@ const Pointsboard = inject('store')( observer (class Pointsboard extends Compone
                   </CardText>       
                   </Card>)
         })}
-        <FlatButton label="Full Standings List" fullWidth={true} onTouchTap={this.fullList} />
+        <FlatButton label="Full Standings List" fullWidth={true} onTouchTap={this.fullList} secondary={true}/>
       </div>
     )
   }
