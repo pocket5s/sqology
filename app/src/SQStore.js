@@ -8,11 +8,13 @@ export class SQStore {
       events: [],
       eventResults: [],
       user: null,
+      leaderboard: [],
       standings: []
     })
 
-    this.loadStandings();
     this.loadEvents();
+    this.loadStandings();
+    this.loadLeaderboard();
   }
 
   getStandings( year ) {
@@ -66,6 +68,17 @@ export class SQStore {
   loadStandings() {
     var e = this.standings;
     api.fetchStandings( 2017 ).then( function(data) {
+      data.slice().map(function(item) {
+      return(
+        e.push( item )
+      )
+      })
+    });
+  }
+
+  loadLeaderboard() {
+    var e = this.leaderboard;
+    api.fetchLeaderboard( 2017 ).then( function(data) {
       data.slice().map(function(item) {
       return(
         e.push( item )

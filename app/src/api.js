@@ -13,6 +13,17 @@ module.exports = {
       });
   },
 
+  fetchLeaderboard: function( year ) {
+    return axios.get("http://sqology.tracerite.com/static/leaderboard.json", {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then( function( response ) {
+        return response.data;
+      });
+  },
+
   fetchStandings: function( year ) {
     return axios.get("http://sqology.tracerite.com/static/standings.json", {
       headers: {

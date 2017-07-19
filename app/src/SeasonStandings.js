@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {Card, CardHeader, CardText} from 'material-ui/Card';
 import { observer, inject } from 'mobx-react';
 
 import Layout from './Layout';
+import Leaderboard from './Leaderboard';
+import Pointsboard from './Pointsboard';
 
 const SeasonStandings = inject('store')( observer (class SeasonStandings extends Component {
   
@@ -17,7 +18,8 @@ const SeasonStandings = inject('store')( observer (class SeasonStandings extends
 
   render() {
     var season = null;
-    
+    var leaderboard = this.props.store.leaderboard;
+
     var year = this.state.year;
     if( this.props.store.standings != null ) {
       var std = this.props.store.standings.filter( item => item.year === year )
@@ -29,27 +31,8 @@ const SeasonStandings = inject('store')( observer (class SeasonStandings extends
     if( season != null ) {
       return (
         <Layout>
-          <div style={{marginLeft:5}}>
-            <h3>Season Standings</h3>
-          </div>
-          
-            {season.slice().map(function(item, index) {
-                return(<Card key={index}><CardHeader  key={index} 
-                             title={item.name} 
-                             subtitle={item.totalScore}
-                             actAsExpander={true}
-                             showExpandableButton={true}/>
-                      <CardText expandable={true}>
-                        <span>Points Breakdown</span>
-                        <ul>
-                          <li>IASCA: {item.iasca}</li>
-                          <li>MECA: {item.meca}</li>
-                          <li>Distance: {item.distance}</li>
-                        </ul>
-                      </CardText>       
-                      </Card>)
-            })}
-         
+          <Leaderboard leaderboard={leaderboard} />
+          <Pointsboard season={season} />
         </Layout>
       )
     }
