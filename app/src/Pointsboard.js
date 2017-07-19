@@ -19,7 +19,7 @@ const Pointsboard = inject('store')( observer (class Pointsboard extends Compone
     return (
       <div style={{marginLeft:5}}>
         <h3>Season Standings</h3>
-        <h5 style={{marginTop:-10}}>Top Total Scores</h5>
+        <h5 style={{marginTop:-10}}>Top 5 Total Scores</h5>
         {season.slice().map(function(item, index) {
             return(<Card key={index}><CardHeader  key={index} 
                          title={item.name} 
