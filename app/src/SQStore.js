@@ -104,8 +104,7 @@ export class SQStore {
 
   loadCompetitor( id ) {
     console.log( "Loading competitor " + id )
-    var comp = null;
-    comp = api.fetchCompetitor( id ).then( function(data) {
+    api.fetchCompetitor( id ).then( function(data) {
       if( data !== null ) {
         return (data);
       }
