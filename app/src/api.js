@@ -51,5 +51,16 @@ module.exports = {
       }
       return null;
     });
-  }
+  },
+
+  fetchCompetitor: function( id ) {
+    return axios.get("http://sqology.tracerite.com/static/competitor.json", {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then( function( response ) {
+        return response.data;
+      });
+  },
 }

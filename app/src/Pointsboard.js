@@ -1,8 +1,18 @@
 import React, {Component} from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import { observer, inject } from 'mobx-react';
 
 const Pointsboard = inject('store')( observer (class Pointsboard extends Component {
+
+  constructor(props) {
+    super(props)
+    this.fullList = this.fullList.bind(this)
+  }
+
+  fullList() {
+    console.log( "Full Standings List clicked" )
+  }
 
   render() {
     var season = this.props.season;
@@ -26,6 +36,7 @@ const Pointsboard = inject('store')( observer (class Pointsboard extends Compone
                   </CardText>       
                   </Card>)
         })}
+        <FlatButton label="Full Standings List" fullWidth={true} onTouchTap={this.fullList} />
       </div>
     )
   }

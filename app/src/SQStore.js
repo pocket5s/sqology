@@ -9,7 +9,8 @@ export class SQStore {
       eventResults: [],
       user: null,
       leaderboard: [],
-      standings: []
+      standings: [],
+      competitors: []
     })
 
     this.loadEvents();
@@ -99,6 +100,20 @@ export class SQStore {
         throw "No results for the selected event"
       }
     });
+  }
+
+  loadCompetitor( id ) {
+    console.log( "Loading competitor " + id )
+    var comp = null;
+    comp = api.fetchCompetitor( id ).then( function(data) {
+      if( data !== null ) {
+        return (data);
+      }
+      else {
+        throw "No results for the selected competitor"
+      }
+    });
+
   }
 }
 
