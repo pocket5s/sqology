@@ -3,9 +3,7 @@ create table if not exists competitors (
   name varchar(100) not null,
   vehicle varchar(100),
   email varchar(50),
-  address varchar(50),
-  city varchar(50),
-  state varchar(2),
+  team varchar(50),
   zip int(5),
   primary key (id)
 );
