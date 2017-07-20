@@ -3,6 +3,7 @@ var db = require('../db')
 exports.all = function( cb ) {
   db.getConnection(function(err, conn) {
     conn.query('SELECT * FROM events ORDER BY event_date DESC', function(err, rows) {
+      conn.release();
       if( !err ) {
         cb(null, rows);
       }
