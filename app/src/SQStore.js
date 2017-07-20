@@ -59,7 +59,7 @@ export class SQStore {
                  state: item.state,
                  zip: item.zip,
                  notes: item.notes,
-                 scoresPosted: item.scoresPosted === 1 ? true : false
+                 scoresPosted: item.scores_posted === 1 ? true : false
                 } )
         )
       });
