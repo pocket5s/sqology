@@ -11,7 +11,7 @@ const Pointsboard = inject('store')( observer (class Pointsboard extends Compone
   }
 
   fullList() {
-    console.log( "Full Standings List clicked" )
+    this.props.history.push('/points')
   }
 
   render() {
@@ -22,7 +22,7 @@ const Pointsboard = inject('store')( observer (class Pointsboard extends Compone
         <h5 style={{marginTop:-10}}>Top 5 Total Scores</h5>
         {season.slice().map(function(item, index) {
             return(<Card key={index}><CardHeader  key={index} 
-                         title={item.name} 
+                         title={item.comp_name} 
                          subtitle={item.totalScore}
                          actAsExpander={true}
                          showExpandableButton={true}/>

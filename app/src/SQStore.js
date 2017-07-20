@@ -52,14 +52,14 @@ export class SQStore {
         return(
         e.push( {id: item.id,
                  name:item.name, 
-                 date:new Date(item.date),
+                 date:new Date(item.event_date),
                  location: item.location,
                  address: item.address,
                  city: item.city,
                  state: item.state,
                  zip: item.zip,
                  notes: item.notes,
-                 scoresPosted: item.scoresPosted
+                 scoresPosted: item.scoresPosted === 1 ? true : false
                 } )
         )
       });

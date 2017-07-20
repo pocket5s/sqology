@@ -14,7 +14,7 @@ const Leaderboard = inject('store')( observer (class Leaderboard extends Compone
   }
 
   fullList() {
-    console.log( "Full list clicked" )
+    this.props.history.push('/');
   }
 
   render() {

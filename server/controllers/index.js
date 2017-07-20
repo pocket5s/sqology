@@ -3,5 +3,6 @@ var express = require('express')
 
 router.use('/events', require('./events'))
 router.use('/standings', require('./standings'))
+router.use('/leaderboards', require('./leaderboards'))
 
 module.exports = router

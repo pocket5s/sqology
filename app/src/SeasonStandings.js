@@ -22,17 +22,20 @@ const SeasonStandings = inject('store')( observer (class SeasonStandings extends
 
     var year = this.state.year;
     if( this.props.store.standings != null ) {
+      /*
       var std = this.props.store.standings.filter( item => item.year === year )
       if( std.length > 0 ) {
         season = std[0].listing;
       } 
+      */
+      season = this.props.store.standings;
     }
 
     if( season != null ) {
       return (
         <Layout>
-          <Leaderboard leaderboard={leaderboard} />
-          <Pointsboard season={season} />
+          <Leaderboard leaderboard={leaderboard} history={this.props.history} />
+          <Pointsboard season={season} history={this.props.history}/>
         </Layout>
       )
     }

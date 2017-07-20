@@ -17,7 +17,7 @@ const LeaderboardItem = inject('store')( observer (class LeaderboardItem extends
 
   render() {
     var item = this.props.item;
-    var txt = item.name + " - " + item.score;
+    var txt = item.comp_name + " - " + item.score;
     return(
        <ListItem primaryText={txt} onTouchTap={this.itemSelected} /> 
     )

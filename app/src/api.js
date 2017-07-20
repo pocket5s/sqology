@@ -1,9 +1,11 @@
 var axios = require('axios');
 
+var domain = "http://api.sqology.tracerite.com";
+
 module.exports = {
   
   fetchEvents: function( year ) {
-    return axios.get("http://sqology.tracerite.com/static/events.json", {
+    return axios.get( domain + "/events", {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -14,7 +16,7 @@ module.exports = {
   },
 
   fetchLeaderboard: function( year ) {
-    return axios.get("http://sqology.tracerite.com/static/leaderboard.json", {
+    return axios.get( domain + "/leaderboards", {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -25,7 +27,7 @@ module.exports = {
   },
 
   fetchStandings: function( year ) {
-    return axios.get("http://sqology.tracerite.com/static/standings.json", {
+    return axios.get( domain + "/standings", {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -36,7 +38,7 @@ module.exports = {
   },
 
   fetchEventResults: function( id ) {
-    return axios.get("http://sqology.tracerite.com/static/event_" + id + ".json")
+    return axios.get( domain + "/event/scores/" + id)
     .then( function( response ) {
       console.log( "response: ", response.status );
       return response.data;
@@ -54,7 +56,7 @@ module.exports = {
   },
 
   fetchCompetitor: function( id ) {
-    return axios.get("http://sqology.tracerite.com/static/competitor.json", {
+    return axios.get( domain + "/competitor/" + id, {
       headers: {
         'Content-Type': 'application/json'
       }

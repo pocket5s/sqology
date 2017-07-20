@@ -9,6 +9,7 @@ import {
 import SeasonStandings from './SeasonStandings';
 import Events from './Events';
 import Competitor from './Competitor';
+import AllPoints from './AllPoints';
 
 const App = inject('store')( observer (class App extends Component {
   render() {
@@ -18,6 +19,7 @@ const App = inject('store')( observer (class App extends Component {
           <Switch>
             <Route exact path="/" component={Events} />
             <Route path="/standings" component={SeasonStandings} />
+            <Route path="/points" component={AllPoints} />
             <Route path="/competitor/:id" component={Competitor} />
           </Switch>
         </BrowserRouter>
