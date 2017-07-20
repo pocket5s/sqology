@@ -38,9 +38,8 @@ module.exports = {
   },
 
   fetchEventResults: function( id ) {
-    return axios.get( domain + "/event/scores/" + id)
+    return axios.get( domain + "/events/scores/" + id)
     .then( function( response ) {
-      console.log( "response: ", response.status );
       return response.data;
     })
     .catch( function( er ) {

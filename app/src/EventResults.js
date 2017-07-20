@@ -22,7 +22,7 @@ const EventResults = inject('store')( observer (class EventResults extends Compo
   findResults() {
     var result = null;
     if( this.props.scoresPosted === true ) {
-      var results = this.props.store.eventResults.filter( res => res.eventId === this.props.eventId );
+      var results = this.props.store.eventResults.filter( res => res.event_id === this.props.eventId );
       if( results.length > 0 ) { 
         result = results[0]; 
       }
@@ -46,6 +46,7 @@ const EventResults = inject('store')( observer (class EventResults extends Compo
     }
     if( results !== null ) {
       return (
+        <div>
         <Table selectable={false}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false} enableSelectAll={false}>
             <TableRow>
@@ -61,7 +62,7 @@ const EventResults = inject('store')( observer (class EventResults extends Compo
             return(
             <TableRow key={index}>
               <TableRowColumn style={colStyles}>{index+1}</TableRowColumn>
-              <TableRowColumn style={colStyles}>{item.name}</TableRowColumn>
+              <TableRowColumn style={colStyles}>{item.comp_name}</TableRowColumn>
               <TableRowColumn style={colStyles}>{item.iasca}</TableRowColumn>
               <TableRowColumn style={colStyles}>{item.meca}</TableRowColumn>
               <TableRowColumn style={colStyles}>{item.distance}</TableRowColumn>
@@ -70,6 +71,12 @@ const EventResults = inject('store')( observer (class EventResults extends Compo
           })}
           </TableBody>
         </Table>
+        <ul>
+          <li>Average IASCA score: <strong>{results.iasca}</strong></li>
+          <li>Average MECA score: <strong>{results.meca}</strong></li>
+          <li>Total distance traveled: <strong>{results.distance}</strong></li>
+        </ul>
+        </div>
       )
     }
     else if( this.props.scoresPosted === false ) {

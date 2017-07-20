@@ -39,3 +39,29 @@ exports.scores = function( id, cb ) {
     });
   });
 }
+
+exports.eventAverages = function( id, cb ) {
+  var meca = 0;
+  var iasca = 0;
+  var distance = 0;
+  db.getConnection( function(err, conn) {
+    var sql = "SELECT round(avg(total),2) as total FROM meca_scores WHERE event_id = ? AND total > 0"
+
+    conn.query(sql, [id], function(err, rows) {
+      meca = rows[0].total;
+    });
+
+    sql = "SELECT round(avg(total),2) as total FROM iasca_scores WHERE event_id = ? AND total > 0"
+    conn.query(sql, [id], function(err, rows) {
+      iasca = rows[0].total;
+    });
+
+    sql = "SELECT sum(total * 2) as total FROM distances WHERE event_id = ?"
+    conn.query(sql, [id], function(err, rows) {
+      distance = rows[0].total;
+      cb(null, {iasca:iasca, meca:meca, distance:distance} );
+    });
+
+    conn.release();
+  });
+}
