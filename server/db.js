@@ -3,19 +3,8 @@ var pool = mysql.createPool({
   host     : '192.168.2.15',
   user     : 'sqology',
   password : 'sqishard',
-  database : 'sqology'
+  database : 'sqology',
+  supportBigNumbers : true
 });
-
-/*
-pool.getConnection(function(err, conn) {
-  conn.query('SELECT * from competitors LIMIT 2', function(err, rows, fields) {
-  if (!err)
-    console.log('The solution is: ', rows);
-  else
-    console.log('Error while performing Query.');
-  })
-  conn.release();
-});
-*/
 
 module.exports = pool
