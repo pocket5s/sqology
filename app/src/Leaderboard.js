@@ -14,7 +14,7 @@ const Leaderboard = inject('store')( observer (class Leaderboard extends Compone
   }
 
   fullList() {
-    this.props.history.push('/');
+    this.props.history.push('/leaderboard');
   }
 
   render() {

@@ -79,7 +79,7 @@ const Events = inject('store')( observer (class Events extends Component {
         })}
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
           <BottomNavigationItem
-            label="Current"
+            label="Upcoming"
             icon={<CurrentIcon />}
             onTouchTap={() => this.select(0)}
           />

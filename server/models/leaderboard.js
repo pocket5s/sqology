@@ -3,7 +3,7 @@ var db = require('../db')
 exports.all = function( cb ) {
   db.getConnection(function(err, conn) {
     var sql = " \
-      select c.name as comp_name, avg( i.total + m.total + (d.total/10)) as score \
+      select c.id as userId, c.name as comp_name, avg( i.total + m.total + (d.total/10)) as score \
       from competitors c \
       left join iasca_scores i on i.competitor_id = c.id \
       left join meca_scores m on m.competitor_id = c.id \
@@ -27,7 +27,7 @@ exports.all = function( cb ) {
 exports.topFive = function( cb ) {
   db.getConnection(function(err, conn) {
     var sql = " \
-      select c.name as comp_name, avg( i.total + m.total + (d.total/10)) as score \
+      select c.id as userId, c.name as comp_name, avg( i.total + m.total + (d.total/10)) as score \
       from competitors c \
       left join iasca_scores i on i.competitor_id = c.id \
       left join meca_scores m on m.competitor_id = c.id \
