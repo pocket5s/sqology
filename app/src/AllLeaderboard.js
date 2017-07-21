@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { observer, inject } from 'mobx-react';
 import {List} from 'material-ui/List';
+import Paper from 'material-ui/Paper';
 
 import Layout from './Layout';
 import LeaderboardItem from "./LeaderboardItem";
@@ -18,11 +19,13 @@ const AllLeaderboard = inject('store')( observer (class AllLeaderboard extends C
       <Layout>
       <div style={{marginLeft:5}}>
         <h3>Leaderboard</h3>
-        <List>
-          {leaderboard.slice().map( function(item, index) {
-            return( <LeaderboardItem key={item.userId} item={item} /> )
-          })}
-        </List>
+        <Paper zDepth={1}>
+          <List>
+            {leaderboard.slice().map( function(item, index) {
+              return( <LeaderboardItem key={item.userId} item={item} /> )
+            })}
+          </List>
+        </Paper>
       </div>
       </Layout>
     )
