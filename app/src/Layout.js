@@ -19,6 +19,10 @@ export default class Home extends React.Component {
   }
 
   render() {
+    const styles = {
+      maxWidth:1024,
+      margin:'0 auto'
+    }
     return (
       <div>
         <AppBar title="SQOLOGY" onLeftIconButtonTouchTap={this.handleToggle} />
@@ -31,7 +35,9 @@ export default class Home extends React.Component {
           <MenuItem leftIcon={<EventIcon />} containerElement={<Link to="/"/>}>Events</MenuItem>
           <MenuItem leftIcon={<RankIcon />}containerElement={<Link to="/standings"/>}>Standings</MenuItem>
         </Drawer>
+        <div style={styles}>
         {this.props.children}
+        </div>
       </div>
     )
   }

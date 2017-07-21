@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { observer, inject } from 'mobx-react';
 import PointCard from './PointCard';
 
@@ -23,7 +23,7 @@ const Pointsboard = inject('store')( observer (class Pointsboard extends Compone
         {season.slice().map(function(item, index) {
             return(<PointCard key={index} item={item} /> )
         })}
-        <FlatButton label="Full Standings List" fullWidth={true} onTouchTap={this.fullList} secondary={true}/>
+        <RaisedButton label="Full Standings List" fullWidth={true} onTouchTap={this.fullList} secondary={true}/>
       </div>
     )
   }

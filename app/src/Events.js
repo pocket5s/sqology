@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
+import Paper from 'material-ui/Paper';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import RecentIcon from 'material-ui/svg-icons/action/restore';
 import CurrentIcon from 'material-ui/svg-icons/action/schedule';
@@ -77,6 +78,7 @@ const Events = inject('store')( observer (class Events extends Component {
             </Card>
           )
         })}
+        <Paper zDepth={1}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
           <BottomNavigationItem
             label="Upcoming"
@@ -89,6 +91,7 @@ const Events = inject('store')( observer (class Events extends Component {
             onTouchTap={() => this.select(1)}
           />
         </BottomNavigation>
+        </Paper>
       </Layout>
     )
   }
