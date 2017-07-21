@@ -10,7 +10,8 @@ export class SQStore {
       user: null,
       leaderboard: [],
       standings: [],
-      competitors: []
+      competitors: [],
+      competitorNames:[]
     })
 
     this.loadEvents();
@@ -102,17 +103,25 @@ export class SQStore {
     });
   }
 
-  loadCompetitor( id ) {
-    console.log( "Loading competitor " + id )
-    api.fetchCompetitor( id ).then( function(data) {
-      if( data !== null ) {
-        return (data);
-      }
-      else {
-        throw "No results for the selected competitor"
-      }
-    });
-
+  loadCompetitorNames() {
+    if( this.competitorNames.length === 0 ) {
+      console.log( "Loading competitors " )
+      var comps = this.competitorNames;
+      api.fetchCompetitors().then( function(data) {
+        if( data !== null ) {
+          data.map(function(item) {
+            comps.push(item);
+          });
+          console.log( "Loaded " + comps.length + " names" );
+        }
+        else {
+          throw "No results for the selected competitor"
+        }
+      });
+    }
+    else {
+      console.log( "Competitor names already loaded" );
+    }
   }
 }
 

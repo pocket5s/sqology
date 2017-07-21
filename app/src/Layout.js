@@ -2,9 +2,12 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
+import Divider from 'material-ui/Divider';
 import MenuItem from 'material-ui/MenuItem';
 import EventIcon from 'material-ui/svg-icons/action/event';
 import RankIcon from 'material-ui/svg-icons/action/grade';
+import NewEventIcon from 'material-ui/svg-icons/action/date-range';
+import AddScoresIcon from 'material-ui/svg-icons/av/hearing';
 
 export default class Home extends React.Component {
 
@@ -28,12 +31,15 @@ export default class Home extends React.Component {
         <AppBar title="SQOLOGY" onLeftIconButtonTouchTap={this.handleToggle} />
         <Drawer
           docked={false}
-          width={200}
+          width={225}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
           <MenuItem leftIcon={<EventIcon />} containerElement={<Link to="/"/>}>Events</MenuItem>
           <MenuItem leftIcon={<RankIcon />}containerElement={<Link to="/standings"/>}>Standings</MenuItem>
+          <Divider />
+          <MenuItem leftIcon={<AddScoresIcon />}containerElement={<Link to="/addEventScore"/>}>Add Event Scores</MenuItem>
+          <MenuItem leftIcon={<NewEventIcon />}containerElement={<Link to="/addEvent"/>}>Add Event</MenuItem>
         </Drawer>
         <div style={styles}>
         {this.props.children}

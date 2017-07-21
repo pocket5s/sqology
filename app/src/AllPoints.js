@@ -10,14 +10,14 @@ const AllPoints = inject('store')( observer (class AllPoints extends Component {
     var season = this.props.store.standings
     return (
       <Layout>
-      <div style={{marginLeft:5}}>
-        <h3>Season Standings</h3>
-        <Paper zDepth={1}>
-          {season.slice().map(function(item, index) {
-              return( <PointCard key={index} item={item} /> )
-          })}
-        </Paper>
-      </div>
+        <div style={{marginLeft:5}}>
+          <h3>Season Standings</h3>
+          <Paper zDepth={1}>
+            {season.slice().map(function(item, index) {
+                return( <PointCard key={index} item={item} /> )
+            })}
+          </Paper>
+        </div>
       </Layout>
     )
   }

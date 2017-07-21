@@ -54,8 +54,8 @@ module.exports = {
     });
   },
 
-  fetchCompetitor: function( id ) {
-    return axios.get( domain + "/competitor/" + id, {
+  fetchCompetitors: function() {
+    return axios.get( domain + "/competitors/names", {
       headers: {
         'Content-Type': 'application/json'
       }
