@@ -1,7 +1,7 @@
 var axios = require('axios');
 
-//var domain = "http://api.sqology.tracerite.com";
-var domain = "http://localhost:8000";
+var domain = "http://api.sqology.tracerite.com";
+//var domain = "http://localhost:8000";
 var googleKey = 'AIzaSyB2vN93fC9izvgVLq6ytMUWZTEP1wXQz-U';
 var distanceUrl = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=ORIGIN_ZIP&destinations=DESTINATION_ZIP&key=AIzaSyB2vN93fC9izvgVLq6ytMUWZTEP1wXQz-U'
 
@@ -73,6 +73,17 @@ module.exports = {
     .then( function(response) {
       cb(response.data);
     });
+  },
+
+  addCompetitor: function( data, cb ) {
+    /*
+    return axios.post( domain + "/competitors/add", data )
+    .then( function(response) {
+      cb(response.data);
+    });
+    */
+    console.log( "Adding: ", data );
+    cb({msg:'Good', competitorId:2});
   }
   /*
   findDistance: function( origin, destination ) {

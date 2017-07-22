@@ -6,12 +6,13 @@ import {
     Route,
     Switch
    } from 'react-router-dom';
-import SeasonStandings from './SeasonStandings';
-import Events from './Events';
+import SeasonStandings from './container/SeasonStandings';
+import Events from './event/Events';
 import Competitor from './Competitor';
-import AllPoints from './AllPoints';
-import AllLeaderboard from './AllLeaderboard';
-import AddEventScore from './AddEventScore';
+import AllPoints from './scores/AllPoints';
+import AllLeaderboard from './scores/AllLeaderboard';
+import AddEventScore from './admin/AddEventScore';
+import AddCompetitor from './admin/AddCompetitor';
 
 const App = inject('store')( observer (class App extends Component {
   render() {
@@ -24,7 +25,8 @@ const App = inject('store')( observer (class App extends Component {
             <Route path="/points" component={AllPoints} />
             <Route path="/leaderboard" component={AllLeaderboard} />
             <Route path="/competitor/:id" component={Competitor} />
-            <Route path="/addEventScore" component={AddEventScore} />
+            <Route path="/addEventScore/:id?/:competitorId?" component={AddEventScore} />
+            <Route path="/addCompetitor/:id" component={AddCompetitor} />
           </Switch>
         </BrowserRouter>
       </MuiThemeProvider>

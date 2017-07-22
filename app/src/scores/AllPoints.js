@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { observer, inject } from 'mobx-react';
 import Paper from 'material-ui/Paper';
-import Layout from './Layout';
+import Layout from '../container/Layout';
 import PointCard from './PointCard';
 
 const AllPoints = inject('store')( observer (class AllPoints extends Component {

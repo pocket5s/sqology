@@ -8,14 +8,24 @@ import MenuItem from 'material-ui/MenuItem';
 import Snackbar from 'material-ui/Snackbar';
 import AutoComplete from 'material-ui/AutoComplete';
 
-import api from './api';
-import Layout from './Layout';
+import api from '../api';
+import Layout from '../container/Layout';
+import AddCompetitor from './AddCompetitor';
 
 const AddEventScore = inject('store')( observer (class AddEventScore extends Component {
  
   constructor(props) {
     super(props)
-    this.state = {eventId:null, 
+    var eventId = this.props.match.params.id;
+    if( eventId ) {
+      eventId = parseInt(eventId, 10);
+    }
+    var compId = this.props.match.params.competitorId;
+    if( compId ) {
+      compId = parseInt(compId, 10);
+    }
+    this.state = {eventId:eventId, 
+                  competitorId:compId,
                   mecaScore:'', 
                   iascaScore:'', 
                   distance:'', 
@@ -35,6 +45,7 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.resetFields = this.resetFields.bind(this);
     this.markCompleted = this.markCompleted.bind(this);
+    this.addCompetitor = this.addCompetitor.bind(this);
 
     this.props.store.loadCompetitorNames();
   }
@@ -53,21 +64,21 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
       this.setState({mecaError:'Value must be between 0 and 100'});
     }
     else {
-      this.setState({[name]:parseInt(value)});
+      this.setState({[name]:parseInt(value,10)});
       this.setState({mecaError:''});
     }
-    if( name === 'iascaScore' && (isNaN(value) || parseFloat(value) < 0 || parseFloat(value) > 268) ) {
+    if( name === 'iascaScore' && (isNaN(value) || parseInt(value,10) < 0 || parseFloat(value) > 268) ) {
       this.setState({iascaError:'Value must be between 0 and 268'});
     }
     else {
-      this.setState({[name]:parseInt(value)});
+      this.setState({[name]:parseInt(value,10)});
       this.setState({iascaError:''});
     }
     if( name === 'distance' && isNaN(value) ) {
       this.setState({distanceError:'Value must be a number'});
     }
     else {
-      this.setState({[name]:parseInt(value)});
+      this.setState({[name]:parseInt(value,10)});
       this.setState({distanceError:''});
     }
   }
@@ -125,6 +136,10 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
     this.setState({snackbarMessage:'Scores marked completed', snackbarOpen:true});
   }
 
+  addCompetitor() {
+    this.props.history.push('/addCompetitor/' + this.state.eventId);
+  }
+
   render() {
     const style = {
       margin:5
@@ -178,7 +193,8 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
         <div style={{width:'100%', marginTop:5}}>
           <RaisedButton label="Save" style={style} onTouchTap={this.handleSubmit} secondary={true} /> 
           <RaisedButton label="Event Completed" style={style} onTouchTap={this.markCompleted} primary={true}/> 
-          <RaisedButton label="Done" style={style} onTouchTap={this.viewEvent} /> 
+          <RaisedButton label="Done" style={style} onTouchTap={this.addCompetitor} /> 
+          <RaisedButton label="Add Competitor" style={style} onTouchTap={this.addCompetitor} /> 
         </div>
         <Snackbar
           open={this.state.snackbarOpen}

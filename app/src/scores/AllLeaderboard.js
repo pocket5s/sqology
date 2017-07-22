@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import {List} from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 
-import Layout from './Layout';
+import Layout from '../container/Layout';
 import LeaderboardItem from "./LeaderboardItem";
 
 const AllLeaderboard = inject('store')( observer (class AllLeaderboard extends Component {

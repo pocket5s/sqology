@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
 import Layout from './Layout';
-import Leaderboard from './Leaderboard';
-import Pointsboard from './Pointsboard';
+import Leaderboard from '../scores/Leaderboard';
+import Pointsboard from '../scores/Pointsboard';
 
 const SeasonStandings = inject('store')( observer (class SeasonStandings extends Component {
   

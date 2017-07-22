@@ -7,7 +7,7 @@ import RecentIcon from 'material-ui/svg-icons/action/restore';
 import CurrentIcon from 'material-ui/svg-icons/action/schedule';
 
 import EventResults from './EventResults'
-import Layout from './Layout'
+import Layout from '../container/Layout'
 
 
 const Events = inject('store')( observer (class Events extends Component {

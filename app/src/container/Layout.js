@@ -40,6 +40,7 @@ export default class Home extends React.Component {
           <Divider />
           <MenuItem leftIcon={<AddScoresIcon />}containerElement={<Link to="/addEventScore"/>}>Add Event Scores</MenuItem>
           <MenuItem leftIcon={<NewEventIcon />}containerElement={<Link to="/addEvent"/>}>Add Event</MenuItem>
+          <MenuItem leftIcon={<NewEventIcon />}containerElement={<Link to="/addCompetitor"/>}>Add Competitor</MenuItem>
         </Drawer>
         <div style={styles}>
         {this.props.children}
