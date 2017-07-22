@@ -33,4 +33,15 @@ router.get('/scores/:id', function(req, res) {
 
 });
 
+router.post( '/addScore', function(req, res) {
+  console.log( req.body );
+  Event.addScore( req.body, function( err, data ) {
+    if( !err ) {
+      res.send( {msg:'GOOD!'} );
+    }
+    else {
+      res.send( {msg:err} );
+    }
+  });
+});
 module.exports = router

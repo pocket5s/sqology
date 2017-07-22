@@ -8,6 +8,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Snackbar from 'material-ui/Snackbar';
 import AutoComplete from 'material-ui/AutoComplete';
 
+import api from './api';
 import Layout from './Layout';
 
 const AddEventScore = inject('store')( observer (class AddEventScore extends Component {
@@ -32,6 +33,8 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
     this.handleEventChange = this.handleEventChange.bind(this);
     this.handleCompetitorChange = this.handleCompetitorChange.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.resetFields = this.resetFields.bind(this);
+    this.markCompleted = this.markCompleted.bind(this);
 
     this.props.store.loadCompetitorNames();
   }
@@ -45,25 +48,28 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
     const value = target.value;
     const name = target.name;
     
+    this.setState({[name]:value});
     if( name === 'mecaScore' && (isNaN(value) || parseFloat(value) < 0 || parseFloat(value) > 100) ) {
       this.setState({mecaError:'Value must be between 0 and 100'});
     }
     else {
+      this.setState({[name]:parseInt(value)});
       this.setState({mecaError:''});
     }
     if( name === 'iascaScore' && (isNaN(value) || parseFloat(value) < 0 || parseFloat(value) > 268) ) {
       this.setState({iascaError:'Value must be between 0 and 268'});
     }
     else {
+      this.setState({[name]:parseInt(value)});
       this.setState({iascaError:''});
     }
     if( name === 'distance' && isNaN(value) ) {
       this.setState({distanceError:'Value must be a number'});
     }
     else {
+      this.setState({[name]:parseInt(value)});
       this.setState({distanceError:''});
     }
-    this.setState({[name]:value});
   }
 
   handleEventChange(e, i, v) {
@@ -92,26 +98,36 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
       distance:this.state.distance
     };
 
-    this.setState({
-      eventId:this.state.eventId,
-      competitorId:null,
-      mecaScore:'',
-      iascaScore:'',
-      distance:'',
-      searchText:'',
-      snackbarOpen:true
+    api.addEventScore( data, this.resetFields ).then( function(cb) {
+      
     });
+  }
 
+  resetFields( response ) {
+    console.log( response );
+      this.setState({
+        eventId:this.state.eventId,
+        competitorId:null,
+        mecaScore:'',
+        iascaScore:'',
+        distance:'',
+        searchText:'',
+        snackbarOpen:true
+      });
   }
 
   viewEvent() {
     this.props.history.push('/');
   }
 
+  markCompleted() {
+    console.log( "mark completed" );
+    this.setState({snackbarMessage:'Scores marked completed', snackbarOpen:true});
+  }
+
   render() {
-    const dataSourceConfig = {
-      text:'name',
-      value:'id'
+    const style = {
+      margin:5
     }
     return(
       <Layout>
@@ -160,8 +176,9 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
           </div>
         </Paper>
         <div style={{width:'100%', marginTop:5}}>
-          <RaisedButton label="Save & Add Another" onTouchTap={this.handleSubmit} secondary={true} /> 
-          <RaisedButton label="Done" onTouchTap={this.viewEvent} /> 
+          <RaisedButton label="Save" style={style} onTouchTap={this.handleSubmit} secondary={true} /> 
+          <RaisedButton label="Event Completed" style={style} onTouchTap={this.markCompleted} primary={true}/> 
+          <RaisedButton label="Done" style={style} onTouchTap={this.viewEvent} /> 
         </div>
         <Snackbar
           open={this.state.snackbarOpen}

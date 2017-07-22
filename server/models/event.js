@@ -21,14 +21,14 @@ exports.scores = function( id, cb ) {
     var sql = " \
       select c.name as comp_name, i.total as iasca, m.total as meca, d.total as distance, d.event_id as event_id, sum( i.total + m.total + (d.total/10)) as score \
       from competitors c \
-      left join iasca_scores i on i.competitor_id = c.id \
-      left join meca_scores m on m.competitor_id = c.id \
-      left join distances d on d.competitor_id = c.id \
-      where d.event_id = ? \
+      left join iasca_scores i on i.competitor_id = c.id AND i.event_id = ? \
+      left join meca_scores m on m.competitor_id = c.id AND m.event_id = ? \
+      left join distances d on d.competitor_id = c.id AND d.event_id = ? \
+      where d.total is not null \
       group by comp_name, iasca, meca, distance, event_id \
       order by score desc \
     "
-    conn.query(sql, [id], function(err, rows) {
+    conn.query(sql, [id,id,id], function(err, rows) {
       conn.release();
       if (!err) {
         cb( null, rows )
@@ -64,5 +64,27 @@ exports.eventAverages = function( id, cb ) {
     });
 
     conn.release();
+  });
+}
+
+exports.addScore = function( data, cb ) {
+  db.getConnection( function(err, conn) {
+    var sql = "INSERT INTO meca_scores (event_id, competitor_id, total) VALUES (?,?,?)";
+    conn.query(sql, [data.eventId, data.competitorId, data.mecaScore], function(err, rows) {
+    });
+
+    sql = "INSERT INTO iasca_scores (event_id, competitor_id, total) VALUES (?,?,?)";
+    conn.query(sql, [data.eventId, data.competitorId, data.iascaScore], function(err, rows) {
+    });
+
+    sql = "INSERT INTO distances (event_id, competitor_id, total) VALUES (?,?,?)";
+    conn.query(sql, [data.eventId, data.competitorId, data.distance], function(err, rows) {
+      if( err ) {
+        console.log( err );
+      }
+    });
+
+    conn.release();
+    cb(null, null);
   });
 }

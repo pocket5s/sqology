@@ -8,7 +8,7 @@ exports.all = function( cb ) {
       left join iasca_scores i on i.competitor_id = c.id \
       left join meca_scores m on m.competitor_id = c.id \
       left join distances d on d.competitor_id = c.id \
-      group by comp_name \
+      group by userId, comp_name \
       order by score desc \
     "
     conn.query(sql, function(err, rows, fields) {
@@ -32,7 +32,7 @@ exports.topFive = function( cb ) {
       left join iasca_scores i on i.competitor_id = c.id \
       left join meca_scores m on m.competitor_id = c.id \
       left join distances d on d.competitor_id = c.id \
-      group by comp_name \
+      group by userId, comp_name \
       order by score desc \
       limit 5 \
     "

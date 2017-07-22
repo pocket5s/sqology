@@ -1,6 +1,7 @@
 var axios = require('axios');
 
-var domain = "http://api.sqology.tracerite.com";
+//var domain = "http://api.sqology.tracerite.com";
+var domain = "http://localhost:8000";
 var googleKey = 'AIzaSyB2vN93fC9izvgVLq6ytMUWZTEP1wXQz-U';
 var distanceUrl = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=ORIGIN_ZIP&destinations=DESTINATION_ZIP&key=AIzaSyB2vN93fC9izvgVLq6ytMUWZTEP1wXQz-U'
 
@@ -67,6 +68,13 @@ module.exports = {
       });
   },
 
+  addEventScore: function( data, cb ) {
+    return axios.post( domain + "/events/addScore", data )
+    .then( function(response) {
+      cb(response.data);
+    });
+  }
+  /*
   findDistance: function( origin, destination ) {
     var url = distanceUrl.replace(/DESTINATION_ZIP/, destination).replace(/ORIGIN_ZIP/, origin);
     return axios.get( url ).then( function(response) {
@@ -74,4 +82,5 @@ module.exports = {
       console.log( "Distance is " + distance );
     });
   }
+  */
 }
