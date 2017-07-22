@@ -25,12 +25,12 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
                   snackbarMessage:'Score saved. You may enter another',
                   compNames:[]
                 }
-    this.state.compNames = [{name:'Mike Young', id:1}, {name:'Harold Jones', id:2}, {name:'Robert McIntosh', id:3}]
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.viewEvent= this.viewEvent.bind(this);
     this.updateName = this.updateName.bind(this);
     this.handleEventChange = this.handleEventChange.bind(this);
+    this.handleCompetitorChange = this.handleCompetitorChange.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
 
     this.props.store.loadCompetitorNames();
@@ -70,6 +70,10 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
     this.setState({eventId:v})
   }
 
+  handleCompetitorChange(e, i, v) {
+    this.setState({competitorId:v})
+  }
+
   updateName( chosen, index ) {
     this.setState({competitorId:chosen.value});
     this.setState({searchText:chosen.name});
@@ -80,8 +84,6 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
   }
 
   handleSubmit() {
-    console.log( "handle Submit" )
-    console.log( this.state );
     var data = {
       eventId:this.state.eventId,
       competitorId:this.state.competitorId,
@@ -89,7 +91,6 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
       iascaScore:this.state.iascaScore,
       distance:this.state.distance
     };
-    console.log( "Submitting: ", data );
 
     this.setState({
       eventId:this.state.eventId,
@@ -100,6 +101,7 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
       searchText:'',
       snackbarOpen:true
     });
+
   }
 
   viewEvent() {
@@ -127,14 +129,15 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
               })}
             </SelectField>
             <br />
-            <AutoComplete name="compName" 
-                          floatingLabelText="Start typing a competitor's name"
-                          searchText={this.state.searchText}
-                          onNewRequest={this.updateName} 
-                          dataSource={this.state.compNames} 
-                          dataSourceConfig={dataSourceConfig}
-                          filter={(searchText, key) => (key.toLowerCase().indexOf(searchText) !== -1)}
-                          maxSearchResults={5}/>
+            <SelectField
+              value={this.state.competitorId}
+              floatingLabelText="Competitor"
+              onChange={this.handleCompetitorChange}
+              >
+              {this.props.store.competitorNames.map( function(item, index) {
+                return( <MenuItem key={item.id} value={item.id} primaryText={item.name} />)
+              })}
+            </SelectField>
             <br />
             <TextField name="mecaScore" 
                        hintText="MECA Score" 
