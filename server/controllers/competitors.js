@@ -16,4 +16,15 @@ router.get('/names', function(req, res) {
   });
 });
 
+router.get('/add', function(req, res) {
+  Competitor.add( function( err, resultId ) {
+    if( !err ) { 
+      res.send( {msg:'GOOD', competitorId:resultId} );
+    }
+    else {
+      console.log( "ERROR: ", err );
+      res.send({msg:'ERROR'})
+    }
+  });
+});
 module.exports = router

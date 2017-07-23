@@ -15,3 +15,17 @@ exports.names = function( cb ) {
   });
 }
 
+exports.add= function( cb ) {
+  db.getConnection(function(err, conn) {
+    conn.query('INSERT INTO competitors ( name, email, vehicle, zip ) VALUES ( ?,?,?,? )', values, function(err, result) {
+      conn.release();
+      if( !err ) {
+        cb(null, result.insertId);
+      }
+      else {
+        console.log( err );
+        cb(err);
+      }
+    });
+  });
+}

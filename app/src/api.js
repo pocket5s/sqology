@@ -75,15 +75,13 @@ module.exports = {
     });
   },
 
-  addCompetitor: function( data, cb ) {
-    /*
-    return axios.post( domain + "/competitors/add", data )
-    .then( function(response) {
-      cb(response.data);
-    });
-    */
+  addCompetitor: function( data ) {
     console.log( "Adding: ", data );
-    cb({msg:'Good', competitorId:2});
+    return axios.get( domain + "/competitors/names", data )
+    .then( function(response) {
+      //cb(response.data);
+      return {id:25, name:data.name}
+    });
   }
   /*
   findDistance: function( origin, destination ) {

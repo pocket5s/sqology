@@ -15,12 +15,14 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
     this.state = {eventId: this.props.match.params.id,
                   competitorId:'',
                   compName:'', 
+                  email:'', 
                   vehicle:'', 
                   zip:'', 
                   snackbarOpen:false, 
                   snackbarMessage:'Competitor Saved. You may add another'}
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.resetFields = this.resetFields.bind(this);
     this.closeMe = this.closeMe.bind(this);
   }
 
@@ -35,13 +37,13 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
   handleSubmit() {
     var data = {
       name:this.state.compName,
+      email:this.state.email,
       vehicle:this.state.compVehicle,
       zip:this.state.zip
     };
 
-    api.addCompetitor( data, this.resetFields ).then( function(cb) {
-          
-    });
+
+    this.props.store.addCompetitor( data, this.resetFields );
   }
 
   resetFields( response ) {
@@ -49,6 +51,7 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
       this.setState({
         competitorId:response.competitorId,
         compName:'',
+        email:'',
         zip:'',
         vehicle:'',
         snackbarOpen:true
@@ -74,6 +77,11 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
                        value={this.state.compName} 
                        errorText={this.state.nameError} 
                        onChange={this.handleChange}/>
+            <br />
+            <TextField name="email" 
+                       hintText="Email" 
+                       value={this.state.email} 
+                       onChange={this.handleChange} />
             <br />
             <TextField name="vehicle" 
                        hintText="Vehicle" 

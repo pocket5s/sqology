@@ -105,7 +105,6 @@ export class SQStore {
 
   loadCompetitorNames() {
     if( this.competitorNames.length === 0 ) {
-      console.log( "Loading competitors " )
       var comps = this.competitorNames;
       api.fetchCompetitors().then( function(data) {
         if( data !== null ) {
@@ -122,6 +121,14 @@ export class SQStore {
     else {
       console.log( "Competitor names already loaded" );
     }
+  }
+
+  addCompetitor(data, cb) {
+    var comps = this.competitorNames;
+    api.addCompetitor( data ).then( function(returnData) {
+      comps.push( returnData );
+      cb({msg:'Good', competitorId:returnData.id});
+    });
   }
 }
 
