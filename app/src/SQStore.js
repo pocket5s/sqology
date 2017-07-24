@@ -11,7 +11,8 @@ export class SQStore {
       leaderboard: [],
       standings: [],
       competitors: [],
-      competitorNames:[]
+      competitorNames:[],
+      user:null
     })
 
     this.loadEvents();
@@ -129,6 +130,10 @@ export class SQStore {
       comps.push( {id:returnData.id, name:returnData.name, zip:returnData.zip} );
       cb({msg:'Good', competitorId:returnData.id, name:returnData.name});
     });
+  }
+
+  login( data ) {
+    this.user = data;
   }
 }
 
