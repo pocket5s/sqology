@@ -44,4 +44,16 @@ router.post( '/addScore', function(req, res) {
     }
   });
 });
+
+router.post( '/markCompleted', function(req, res) {
+  console.log( req.body );
+  Event.markCompleted( req.body, function( err, data ) {
+    if( !err ) {
+      res.send( {msg:'GOOD!'} );
+    }
+    else {
+      res.send( {msg:err} );
+    }
+  });
+});
 module.exports = router

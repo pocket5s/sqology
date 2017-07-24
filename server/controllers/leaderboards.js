@@ -3,16 +3,6 @@ var express = require('express')
   , db = require('../db')
   , Leaderboard = require('../models/leaderboard')
 
-router.get('/', function(req, res) {
-  Leaderboard.topFive( function( err, rows ) {
-    if( !err ) {
-      res.send( rows )
-    }
-    else {
-      res.send( {msg:'Error'} );
-    }
-  });
-});
 
 router.get('/all', function(req, res) {
   Leaderboard.all( function( err, rows ) {

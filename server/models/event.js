@@ -88,3 +88,12 @@ exports.addScore = function( data, cb ) {
     cb(null, null);
   });
 }
+
+events.markCompleted = function( data, cb ) {
+  db.getConnection( function(err, conn) {
+    conn.query( "UPDATE events SET scores_posted = 1 WHERE id = ?", [data.id], function(err, rows) {
+      conn.release();
+    });
+    cb(null, null);
+  });
+}

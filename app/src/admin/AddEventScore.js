@@ -144,7 +144,7 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
   }
 
   markCompleted() {
-    console.log( "mark completed" );
+    this.props.store.markCompleted( this.state.eventId );
     this.setState({snackbarMessage:'Scores marked completed', snackbarOpen:true});
   }
 

@@ -8,6 +8,7 @@ exports.all = function( cb ) {
       left join iasca_scores i on i.competitor_id = c.id \
       left join meca_scores m on m.competitor_id = c.id \
       left join distances d on d.competitor_id = c.id \
+      where d.total is not null \
       group by comp_name, iasca, meca, distance \
       order by totalScore desc \
     "

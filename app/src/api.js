@@ -20,7 +20,7 @@ module.exports = {
   },
 
   fetchLeaderboard: function( year ) {
-    return axios.get( domain + "/leaderboards", {
+    return axios.get( domain + "/leaderboards/all", {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -31,7 +31,7 @@ module.exports = {
   },
 
   fetchStandings: function( year ) {
-    return axios.get( domain + "/standings", {
+    return axios.get( domain + "/standings/all", {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -78,6 +78,13 @@ module.exports = {
 
   addCompetitor: function( data, cb ) {
     return axios.post( domain + "/competitors/add", data )
+    .then( function(response) {
+      return response.data;
+    });
+  },
+
+  markCompleted: function( id, cb ) {
+    return axios.post( domain + "/events/markCompleted", {id:id} )
     .then( function(response) {
       return response.data;
     });

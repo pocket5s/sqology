@@ -104,6 +104,17 @@ export class SQStore {
     });
   }
 
+  markCompleted( id ) {
+    var events = this.events;
+    api.markCompleted( id ).then( function(data) {
+       events.slice().map( function(item, index) {
+          if( item.id === id ) {
+            item.scoresPosted = true;
+          }
+       });
+    });
+  }
+
   loadCompetitorNames() {
     if( this.competitorNames.length === 0 ) {
       var comps = this.competitorNames;

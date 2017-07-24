@@ -20,7 +20,7 @@ const Pointsboard = inject('store')( observer (class Pointsboard extends Compone
       <div style={{marginLeft:5}}>
         <h3>Season Standings</h3>
         <h5 style={{marginTop:-10}}>Top 5 Total Scores</h5>
-        {season.slice().map(function(item, index) {
+        {season.slice(0,5).map(function(item, index) {
             return(<PointCard key={index} item={item} /> )
         })}
         <RaisedButton label="Full Standings List" fullWidth={true} onTouchTap={this.fullList} secondary={true}/>
