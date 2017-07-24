@@ -10,6 +10,7 @@ import RankIcon from 'material-ui/svg-icons/action/grade';
 import NewEventIcon from 'material-ui/svg-icons/action/date-range';
 import AddScoresIcon from 'material-ui/svg-icons/av/hearing';
 import AddCompetitorIcon from 'material-ui/svg-icons/action/accessibility';
+import LoginIcon from 'material-ui/svg-icons/social/person';
 
 const Layout = inject('store')( observer (class Layout extends Component {
 
@@ -64,7 +65,7 @@ const Layout = inject('store')( observer (class Layout extends Component {
             <MenuItem leftIcon={<EventIcon />} containerElement={<Link to="/"/>}>Events</MenuItem>
             <MenuItem leftIcon={<RankIcon />}containerElement={<Link to="/standings"/>}>Standings</MenuItem>
             <Divider />
-            <MenuItem leftIcon={<AddScoresIcon />}containerElement={<Link to="/login"/>}>Login</MenuItem>
+            <MenuItem leftIcon={<LoginIcon />}containerElement={<Link to="/login"/>}>Login</MenuItem>
           </Drawer>
           <div style={styles}>
           {this.props.children}

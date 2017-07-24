@@ -132,8 +132,14 @@ export class SQStore {
     });
   }
 
-  login( data ) {
-    this.user = data;
+  login( data, cb ) {
+    if( data.email !== 'test@sqology.org' ) {
+      cb( {msg:'FAIL'} )
+    }
+    else {
+      this.user = data;
+      cb( {msg:'OK'} );
+    }
   }
 }
 

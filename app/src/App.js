@@ -13,6 +13,7 @@ import AllPoints from './scores/AllPoints';
 import AllLeaderboard from './scores/AllLeaderboard';
 import AddEventScore from './admin/AddEventScore';
 import AddCompetitor from './admin/AddCompetitor';
+import Login from './admin/Login';
 
 const App = inject('store')( observer (class App extends Component {
   render() {
@@ -27,6 +28,7 @@ const App = inject('store')( observer (class App extends Component {
             <Route path="/competitor/:id" component={Competitor} />
             <Route path="/addEventScore/:id?/:competitorId?" component={AddEventScore} />
             <Route path="/addCompetitor/:id?" component={AddCompetitor} />
+            <Route path="/login" component={Login} />
           </Switch>
         </BrowserRouter>
       </MuiThemeProvider>
