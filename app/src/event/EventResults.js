@@ -42,7 +42,8 @@ const EventResults = inject('store')( observer (class EventResults extends Compo
     var results = this.findResults();
     const colStyles = {
       paddingLeft:5,
-      paddingRight:5
+      paddingRight:5,
+      width:20
     }
     if( results !== null ) {
       return (
@@ -50,22 +51,24 @@ const EventResults = inject('store')( observer (class EventResults extends Compo
         <Table selectable={false}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false} enableSelectAll={false}>
             <TableRow>
-              <TableHeaderColumn style={colStyles}>Place</TableHeaderColumn>
-              <TableHeaderColumn style={colStyles}>Name</TableHeaderColumn>
+              <TableHeaderColumn style={{paddingLeft:0, paddingRight:0, width:15}}>#</TableHeaderColumn>
+              <TableHeaderColumn style={{paddingLeft:0, paddingRight:5, width:35}}>Name</TableHeaderColumn>
               <TableHeaderColumn style={colStyles}>IASCA</TableHeaderColumn>
               <TableHeaderColumn style={colStyles}>MECA</TableHeaderColumn>
               <TableHeaderColumn style={colStyles}>Distance</TableHeaderColumn>
+              <TableHeaderColumn style={colStyles}>Score</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
           {results.placings.map(function(item, index) {
             return(
             <TableRow key={index}>
-              <TableRowColumn style={colStyles}>{index+1}</TableRowColumn>
-              <TableRowColumn style={colStyles}>{item.comp_name}</TableRowColumn>
+              <TableRowColumn style={{paddingLeft:0, paddingRight:0, width:15}}>{index+1}</TableRowColumn>
+              <TableRowColumn style={{paddingLeft:0, paddingRight:5, width:35}}>{item.comp_name}</TableRowColumn>
               <TableRowColumn style={colStyles}>{item.iasca}</TableRowColumn>
               <TableRowColumn style={colStyles}>{item.meca}</TableRowColumn>
               <TableRowColumn style={colStyles}>{item.distance}</TableRowColumn>
+              <TableRowColumn style={colStyles}>{item.score}</TableRowColumn>
             </TableRow>
             )
           })}
