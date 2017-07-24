@@ -16,10 +16,11 @@ router.get('/names', function(req, res) {
   });
 });
 
-router.get('/add', function(req, res) {
-  Competitor.add( function( err, resultId ) {
+router.post('/add', function(req, res) {
+  console.log( "Attempting to add ", req.body );
+  Competitor.add( req.body, function( err, result ) {
     if( !err ) { 
-      res.send( {msg:'GOOD', competitorId:resultId} );
+      res.send( result );
     }
     else {
       console.log( "ERROR: ", err );
