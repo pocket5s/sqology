@@ -5,7 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
 
-import api from '../api';
 import Layout from '../container/Layout';
 
 const AddCompetitor = inject('store')( observer (class AddCompetitor extends Component {
@@ -61,7 +60,12 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
   }
 
   closeMe() {
-    this.props.history.push('/addEventScore/' + this.state.eventId + '/' + this.state.competitorId);
+    if( this.state.eventId === undefined ) {
+      this.props.history.push('/');
+    }
+    else {
+      this.props.history.push('/addEventScore/' + this.state.eventId + '/' + this.state.competitorId);
+    }
   }
 
   render() {

@@ -6,11 +6,9 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Snackbar from 'material-ui/Snackbar';
-import AutoComplete from 'material-ui/AutoComplete';
 
 import api from '../api';
 import Layout from '../container/Layout';
-import AddCompetitor from './AddCompetitor';
 
 const AddEventScore = inject('store')( observer (class AddEventScore extends Component {
  

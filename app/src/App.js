@@ -26,7 +26,7 @@ const App = inject('store')( observer (class App extends Component {
             <Route path="/leaderboard" component={AllLeaderboard} />
             <Route path="/competitor/:id" component={Competitor} />
             <Route path="/addEventScore/:id?/:competitorId?" component={AddEventScore} />
-            <Route path="/addCompetitor/:id" component={AddCompetitor} />
+            <Route path="/addCompetitor/:id?" component={AddCompetitor} />
           </Switch>
         </BrowserRouter>
       </MuiThemeProvider>
