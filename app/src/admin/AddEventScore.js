@@ -32,7 +32,8 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
                   distanceError:'',
                   snackbarOpen:false,
                   snackbarMessage:'Score saved. You may enter another',
-                  compNames:[]
+                  compNames:[],
+                  isValid:true
                 }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,7 +45,7 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
     this.resetFields = this.resetFields.bind(this);
     this.markCompleted = this.markCompleted.bind(this);
     this.addCompetitor = this.addCompetitor.bind(this);
-
+    this.validateData = this.validateData.bind(this);
     this.props.store.loadCompetitorNames();
   }
 
@@ -56,29 +57,37 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
     const target = e.target;
     const value = target.value;
     const name = target.name;
-    
+
     this.setState({[name]:value});
-    if( name === 'mecaScore' && (isNaN(value) || parseFloat(value) < 0 || parseFloat(value) > 100) ) {
+  }
+
+  validateData() {
+    console.log( "Validating..." );
+    var valid = true;
+    if( isNaN(this.state.mecaScore) || (parseFloat(this.state.mecaScore) < 0 || parseFloat(this.state.mecaScore) > 100) ) {
       this.setState({mecaError:'Value must be between 0 and 100'});
+      valid = false;
     }
     else {
-      this.setState({[name]:parseInt(value,10)});
       this.setState({mecaError:''});
     }
-    if( name === 'iascaScore' && (isNaN(value) || parseInt(value,10) < 0 || parseFloat(value) > 268) ) {
+    if( isNaN(this.state.iascaScore) || (parseInt(this.state.iascaScore,10) < 0 || parseFloat(this.state.iascaScore) > 268) ) {
       this.setState({iascaError:'Value must be between 0 and 268'});
+      valid = false;
     }
     else {
-      this.setState({[name]:parseInt(value,10)});
       this.setState({iascaError:''});
     }
-    if( name === 'distance' && isNaN(value) ) {
+    if( isNaN(this.state.distance) ) {
       this.setState({distanceError:'Value must be a number'});
+      valid = false;
     }
     else {
-      this.setState({[name]:parseInt(value,10)});
       this.setState({distanceError:''});
     }
+
+    console.log( "Setting valid state to ", valid );
+    this.setState({isValid:valid});
   }
 
   handleEventChange(e, i, v) {
@@ -99,17 +108,22 @@ const AddEventScore = inject('store')( observer (class AddEventScore extends Com
   }
 
   handleSubmit() {
-    var data = {
-      eventId:this.state.eventId,
-      competitorId:this.state.competitorId,
-      mecaScore:this.state.mecaScore,
-      iascaScore:this.state.iascaScore,
-      distance:this.state.distance
-    };
+    this.validateData();
+    if( this.state.isValid ) {
+      var data = {
+        eventId:this.state.eventId,
+        competitorId:this.state.competitorId,
+        mecaScore:this.state.mecaScore,
+        iascaScore:this.state.iascaScore,
+        distance:this.state.distance
+      };
 
-    api.addEventScore( data, this.resetFields ).then( function(cb) {
-      
-    });
+      api.addEventScore( data, this.resetFields ).then( function(cb) {
+      });
+    }
+    else {
+      console.log( "Not valid" );
+    }
   }
 
   resetFields( response ) {
