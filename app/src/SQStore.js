@@ -126,7 +126,7 @@ export class SQStore {
   addCompetitor(data, cb) {
     var comps = this.competitorNames;
     api.addCompetitor( data ).then( function(returnData) {
-      comps.push( returnData );
+      comps.push( {id:returnData.id, name:returnData.name, zip:returnData.zip} );
       cb({msg:'Good', competitorId:returnData.id, name:returnData.name});
     });
   }

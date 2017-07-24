@@ -1,6 +1,6 @@
 var mysql      = require('mysql');
 var pool = mysql.createPool({
-  host     : '192.168.2.15',
+  host     : 'localhost',
   user     : 'sqology',
   password : 'sqishard',
   database : 'sqology',
