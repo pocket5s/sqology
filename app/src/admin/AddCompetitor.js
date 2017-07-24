@@ -38,22 +38,21 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
     var data = {
       name:this.state.compName,
       email:this.state.email,
-      vehicle:this.state.compVehicle,
-      zip:this.state.zip
+      vehicle:this.state.vehicle,
+      zip:parseInt(this.state.zip,10)
     };
-
 
     this.props.store.addCompetitor( data, this.resetFields );
   }
 
   resetFields( response ) {
-    console.log( response );
       this.setState({
         competitorId:response.competitorId,
         compName:'',
         email:'',
         zip:'',
         vehicle:'',
+        snackbarMessage:response.name + " saved.",
         snackbarOpen:true
       });
   }
