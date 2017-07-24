@@ -18,6 +18,7 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
                   email:'', 
                   vehicle:'', 
                   zip:'', 
+                  team:'',
                   snackbarOpen:false, 
                   snackbarMessage:'Competitor Saved. You may add another'}
     this.handleChange = this.handleChange.bind(this);
@@ -39,6 +40,7 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
       name:this.state.compName,
       email:this.state.email,
       vehicle:this.state.vehicle,
+      team:this.state.team,
       zip:parseInt(this.state.zip,10)
     };
 
@@ -52,6 +54,7 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
         email:'',
         zip:'',
         vehicle:'',
+        team:'',
         snackbarMessage:response.name + " saved.",
         snackbarOpen:true
       });
@@ -93,6 +96,10 @@ const AddCompetitor = inject('store')( observer (class AddCompetitor extends Com
                        errorText={this.state.zipError} 
                        onChange={this.handleChange} />
             <br />
+            <TextField name="team" 
+                       hintText="Team" 
+                       value={this.state.team} 
+                       onChange={this.handleChange} />
           </div>
         </Paper>
         <div style={{width:'100%', marginTop:5}}>

@@ -16,9 +16,9 @@ exports.names = function( cb ) {
 }
 
 exports.add = function( data, cb ) {
-  var values = [data.name, data.email, data.vehicle, data.zip]
+  var values = [data.name, data.email, data.vehicle, data.zip, data.team]
   db.getConnection(function(err, conn) {
-    conn.query('INSERT INTO competitors ( name, email, vehicle, zip ) VALUES ( ?,?,?,? )', values, function(err, result) {
+    conn.query('INSERT INTO competitors ( name, email, vehicle, zip, team ) VALUES ( ?,?,?,?,? )', values, function(err, result) {
       conn.release();
       if( !err ) {
         cb(null, {msg:'OK', name:data.name, id:result.insertId, email:data.email, vehicle:data.vehicle});

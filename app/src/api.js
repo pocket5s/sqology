@@ -77,11 +77,9 @@ module.exports = {
   },
 
   addCompetitor: function( data ) {
-    console.log( "Adding: ", data );
     return axios.post( domain + "/competitors/add", data )
     .then( function(response) {
       return response.data;
-      //return {id:25, name:data.name}
     });
   }
   /*
