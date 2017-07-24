@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { observer, inject } from 'mobx-react';
 import {Link} from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import MenuItem from 'material-ui/MenuItem';
@@ -32,7 +33,11 @@ const Layout = inject('store')( observer (class Layout extends Component {
     if( this.props.store.user !== null ) {
       return (
         <div>
-          <AppBar title="SQOLOGY" onLeftIconButtonTouchTap={this.handleToggle} />
+          <AppBar 
+            title="SQOLOGY" 
+            onLeftIconButtonTouchTap={this.handleToggle} 
+            iconElementRight={<FlatButton href="http://sqology.org">SQOLOGY Home</FlatButton>}
+          />
           <Drawer
             docked={false}
             width={225}
@@ -55,7 +60,11 @@ const Layout = inject('store')( observer (class Layout extends Component {
     else {
       return (
         <div>
-          <AppBar title="SQOLOGY" onLeftIconButtonTouchTap={this.handleToggle} />
+          <AppBar 
+            title="SQOLOGY" 
+            onLeftIconButtonTouchTap={this.handleToggle}
+            iconElementRight={<FlatButton href="http://sqology.org">SQOLOGY Home</FlatButton>}
+          />
           <Drawer
             docked={false}
             width={225}
